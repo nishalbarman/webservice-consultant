@@ -8,7 +8,7 @@
 - npm install
 - replace .env.example to .env
 - modify the .env data
-- You are ready to visit http//localhost:PORT/
+- You are ready to visit <a href="http://localhost:8000/">http//localhost:8000/</a>
 ```
 
 ## API usage
