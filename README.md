@@ -4,10 +4,12 @@
 
 ### Commands
 
-- #### npm install
-- #### replace .env.example to .env
-- #### modify the .env data
-- #### You are ready to visit http//localhost:PORT/
+```
+- npm install
+- replace .env.example to .env
+- modify the .env data
+- You are ready to visit http//localhost:PORT/
+```
 
 ## API usage
 
