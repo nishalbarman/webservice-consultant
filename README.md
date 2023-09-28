@@ -13,4 +13,4 @@
 
 - Data should in the form of multipart/formdata,
 - All fields are required
-- Keys that needs to use - title, description, project_image,name(by whoom this data going to be created)
+- Keys that needs to use - title, description, project_image,name(by whom this data going to be created)
