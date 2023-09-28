@@ -1,10 +1,13 @@
 # Webservice Consultant
 
-## How to setup
+## SERVER - How to setup
+
+### local server
 
 ### Commands
 
 ```
+- cd server
 - npm install
 - replace .env.example to .env
 - modify the .env data
