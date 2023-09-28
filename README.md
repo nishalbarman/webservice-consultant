@@ -44,7 +44,7 @@
 ```{
     "name": "Nishal",
     "email": "n@gmail.com",
-    "password": "@NishalBoss23",
+    "password": "your_secret_password",
     "createdBy: "Admin"
    }
 ```
