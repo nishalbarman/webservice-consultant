@@ -1,4 +1,4 @@
-# Webservice consultant
+# Webservice Consultant
 
 ## API usage
 
