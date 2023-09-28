@@ -2,7 +2,7 @@
 
 ## API usage
 
-- ##### #home Access Token is needed...
+- ###### Access Token is needed...
 
 ### Projects
 
