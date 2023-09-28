@@ -9,6 +9,7 @@ const usersRoute = require("./routers/users.routes");
 const servicesRoute = require("./routers/services.route");
 const projectsRoute = require("./routers/projects.routes");
 const clientsRoute = require("./routers/clients.routes");
+const messagesRoute = require("./routers/messages.routes");
 
 const port = process.env.SERVER_PORT || 8000;
 const app = express();
@@ -27,6 +28,7 @@ app.use("/users", usersRoute);
 app.use("/services", servicesRoute);
 app.use("/projects", projectsRoute);
 app.use("/clients", clientsRoute);
+app.use("/messages", messagesRoute);
 
 app.get("/", (req, res) => {
   res.send("Not allowed");

@@ -2,6 +2,7 @@ const { Router } = require("express");
 const { Service } = require("../mongo/models");
 const jwt = require("jsonwebtoken");
 const multer = require("multer");
+const mongoose = require("mongoose");
 
 const upload = multer().single("service_image");
 
@@ -46,26 +47,42 @@ router.get("/", async (req, res) => {
 });
 
 router.post("/create", tokenParse, check_role, async (req, res) => {
-  try {
-    upload(req, res, async function (err) {
+  upload(req, res, async function (err) {
+    try {
       if (err instanceof multer.MulterError) {
-        res.send({ status: false, message: "image required" });
+        res.send({
+          status: false,
+          message: "there is a problem, please try again",
+        });
+        return;
       } else if (err) {
         throw err;
       }
-      req.body.image = {
-        data: req.file.buffer,
-        mimetype: req.file.mimetype,
-      };
+      if (req.file) {
+        req.body.image = {
+          data: req.file.buffer,
+          mimetype: req.file.mimetype,
+        };
+      } else {
+        res.send({ status: false, message: "image required" });
+        return;
+      }
       const service = new Service(req.body);
-      console.log(service);
       await service.save();
       res.send({ status: true, message: "Service created!" });
-    });
-  } catch (err) {
-    res.sendStatus(500);
-    console.log("Get service eror => ", err);
-  }
+    } catch (err) {
+      if (err instanceof mongoose.Error) {
+        const errors = [];
+        for (key in err.errors) {
+          errors.push(err.errors[key].properties.message);
+        }
+        res.status(400).send({ status: false, message: errors.join(", ") });
+      } else {
+        res.sendStatus(500);
+      }
+      console.log("Get service eror => ", err);
+    }
+  });
 });
 
 router.patch("/update/:id", tokenParse, check_role, (req, res) => {

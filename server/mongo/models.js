@@ -6,7 +6,7 @@ mongoose.connect(string);
 
 const clientSchema = new mongoose.Schema(
   {
-    title: String,
+    title: { type: String, required: true },
     image: {
       mimetype: String,
       data: Buffer,
@@ -30,8 +30,8 @@ const clientSchema = new mongoose.Schema(
 
 const servicesSchema = new mongoose.Schema(
   {
-    title: String,
-    description: String,
+    title: { type: String, required: true },
+    description: { type: String, required: true },
     image: {
       mimetype: String,
       data: Buffer,
@@ -53,12 +53,9 @@ const servicesSchema = new mongoose.Schema(
 
 const userSchema = new mongoose.Schema(
   {
-    name: String,
-    email: {
-      type: String,
-      unique: true,
-    },
-    password: { type: String },
+    name: { type: String, required: true },
+    email: { type: String, required: true, unique: true },
+    password: { type: String, required: true },
     role: { type: Number, default: 0 }, // 1 means super admin, 2 means user with edit access, 0 means normal user
     created_date: {
       name: { type: String, default: "." },
@@ -86,11 +83,32 @@ const userSchema = new mongoose.Schema(
   }
 );
 
+const messageSchema = new mongoose.Schema(
+  {
+    name: { type: String, required: true },
+    email: { type: String, required: true },
+    message: { type: String, required: true },
+    phone: { type: Number, required: true },
+    created_date: {
+      name: { type: String, default: "." },
+      date: { type: Date, default: Date.now },
+    },
+  },
+  {
+    query: {
+      all() {
+        return this.where({}).limit(20);
+      },
+    },
+  }
+);
+
 // create and export the model
 const Project = mongoose.model("projects", servicesSchema);
 const Service = mongoose.model("services", servicesSchema);
 const Client = mongoose.model("clients", clientSchema);
 const User = mongoose.model("users", userSchema);
+const Message = mongoose.model("messages", messageSchema);
 
 // validations for the models
 
@@ -128,4 +146,34 @@ Project.schema.path("title").validate({
   message: "title required",
 });
 
-module.exports = { Project, Service, Client, User };
+Message.schema.path("name").validate({
+  validator: function (value) {
+    return value.length > 3;
+  },
+  message: "name required",
+});
+
+Message.schema.path("email").validate({
+  validator: function (value) {
+    var tester =
+      /^[-!#$%&'*+\/0-9=?A-Z^_a-z`{|}~](\.?[-!#$%&'*+\/0-9=?A-Z^_a-z`{|}~])*@[a-zA-Z0-9](-*\.?[a-zA-Z0-9])*\.[a-zA-Z](-?[a-zA-Z0-9])+$/;
+    return value && tester.test(value);
+  },
+  message: "enter valid email!",
+});
+
+Message.schema.path("message").validate({
+  validator: function (value) {
+    return value.length > 10;
+  },
+  message: "message required",
+});
+
+Message.schema.path("phone").validate({
+  validator: function (value) {
+    return value.length === 10;
+  },
+  message: "phone number must be of 10 digit",
+});
+
+module.exports = { Project, Service, Client, User, Message };

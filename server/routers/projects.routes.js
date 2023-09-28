@@ -46,34 +46,48 @@ router.get("/", async (req, res) => {
 });
 
 router.post("/create", tokenParse, check_role, (req, res) => {
-  try {
-    upload(req, res, async function (err) {
+  upload(req, res, async function (err) {
+    try {
       if (err instanceof multer.MulterError) {
-        res.status(403, { status: false, message: "Some error occured" });
+        res.send({
+          status: false,
+          message: "problem with server, please try again",
+        });
+        return;
       } else if (err) {
         throw err;
       }
-
-      console.log(req.file);
-
-      req.body.image = {
-        data: req.file.buffer,
-        mimetype: req.file.mimetype,
-      };
+      if (req.file) {
+        req.body.image = {
+          data: req.file.buffer,
+          mimetype: req.file.mimetype,
+        };
+      } else {
+        res.send({ status: false, message: "image required" });
+        return;
+      }
       const project = new Project(req.body);
       console.log(project);
       await project.save();
       res.send({ status: true, message: "Project created!" });
-    });
-  } catch (err) {
-    res.sendStatus(500);
-    console.log("Get project eror => ", err);
-  }
+    } catch (err) {
+      if (err instanceof mongoose.Error) {
+        const errors = [];
+        for (key in err.errors) {
+          errors.push(err.errors[key].properties.message);
+        }
+        res.status(400).send({ status: false, message: errors.join(", ") });
+      } else {
+        res.sendStatus(500);
+      }
+      console.log("Get project eror => ", err);
+    }
+  });
 });
 
 router.patch("/update/:id", tokenParse, check_role, (req, res) => {
-  try {
-    upload(req, res, async function (err) {
+  upload(req, res, async function (err) {
+    try {
       if (err instanceof multer.MulterError) {
       } else if (err) {
         throw err;
@@ -93,11 +107,11 @@ router.patch("/update/:id", tokenParse, check_role, (req, res) => {
       console.log(req.body);
       await Project.updateOne({ _id: req.params.id }, { $set: req.body });
       res.send({ status: true, message: "Project updated!" });
-    });
-  } catch (err) {
-    res.sendStatus(500);
-    console.log("Get project error => ", err);
-  }
+    } catch (err) {
+      res.sendStatus(500);
+      console.log("Get project error => ", err);
+    }
+  });
 });
 
 router.delete("/delete/:id", tokenParse, check_role, async (req, res) => {
