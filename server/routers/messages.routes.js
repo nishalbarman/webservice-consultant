@@ -52,10 +52,44 @@ const check_role = async (req, res, next) => {
 
 router.get("/", tokenParse, check_role, async (req, res) => {
   try {
-    const messages = await Message.find().all();
+    const page = req.query.page || 1;
+    const limit = req.query.limit || 20;
+    const skipDocuments = (page - 1) * +limit;
+    const totalData = await Message.find().count();
+
+    if (skipDocuments >= totalData) {
+      console.log("I am here!");
+      let messages = {};
+      messages.totalData = totalData;
+      messages.limit = +limit;
+      messages.data = [];
+      res.send({ messages });
+      return;
+    }
+
+    let messages = {};
+
+    messages.totalData = totalData;
+    messages.limit = +limit;
+
+    const sort = req.query["sort"];
+    const order = req.query["order"] || "desc";
+
+    if (sort && order) {
+      messages.data = await Message.find()
+        .sort({ [sort]: order })
+        .skip(skipDocuments)
+        .limit(+limit);
+    } else {
+      messages.data = await Message.find().skip(skipDocuments).limit(+limit);
+    }
     res.send({ messages });
   } catch (err) {
-    res.sendStatus(500);
+    if (err instanceof mongoose.MongooseError) {
+      res.status(400).send({ status: false, message: "Bad request" });
+    } else {
+      res.sendStatus(500);
+    }
     console.log("Get user eror => ", err);
   }
 });
@@ -101,11 +135,20 @@ router.patch("/update/:id", tokenParse, check_role, async (req, res) => {
       { _id: req.params.id },
       {
         $set: req.body,
-      }
+      },
+      { runValidators: true }
     );
     res.send({ status: true, message: "Message updated!" });
   } catch (err) {
-    res.sendStatus(500);
+    if (err instanceof mongoose.Error) {
+      const errors = [];
+      for (key in err.errors) {
+        errors.push(err.errors[key].properties.message);
+      }
+      res.status(400).send({ status: false, message: errors.join(", ") });
+    } else {
+      res.sendStatus(500);
+    }
     console.log("Patch message eror => ", err);
   }
 });

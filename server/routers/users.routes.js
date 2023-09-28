@@ -166,16 +166,32 @@ router.patch("/update/:id", tokenParse, check_role, async (req, res) => {
     if (req.body._id) {
       delete req.body._id;
     }
+
+    if (req.body.password) {
+      const salt = bcrypt.genSaltSync(10);
+      const hash = bcrypt.hashSync(req.body.password, salt);
+      req.body.password = hash;
+    }
+
     console.log(req.body);
     await User.updateOne(
       { _id: req.params.id },
       {
         $set: req.body,
-      }
+      },
+      { runValidators: true }
     );
     res.send({ status: true, message: "User updated!" });
   } catch (err) {
-    res.sendStatus(500);
+    if (err instanceof mongoose.Error) {
+      const errors = [];
+      for (key in err.errors) {
+        errors.push(err.errors[key].properties.message);
+      }
+      res.status(400).send({ status: false, message: errors.join(", ") });
+    } else {
+      res.sendStatus(500);
+    }
     console.log("Get service eror => ", err);
   }
 });

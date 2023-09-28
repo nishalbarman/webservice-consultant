@@ -89,15 +89,13 @@ const messageSchema = new mongoose.Schema(
     email: { type: String, required: true },
     message: { type: String, required: true },
     phone: { type: Number, required: true },
-    created_date: {
-      name: { type: String, default: "." },
-      date: { type: Date, default: Date.now },
-    },
+    status: { type: Boolean, default: false },
   },
   {
+    timestamps: true,
     query: {
       all() {
-        return this.where({}).limit(20);
+        return this.where({});
       },
     },
   }
@@ -171,7 +169,7 @@ Message.schema.path("message").validate({
 
 Message.schema.path("phone").validate({
   validator: function (value) {
-    return value.length === 10;
+    return value.toString().length === 10;
   },
   message: "phone number must be of 10 digit",
 });

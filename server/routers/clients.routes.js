@@ -2,6 +2,7 @@ const { Router } = require("express");
 const { Client } = require("../mongo/models");
 const jwt = require("jsonwebtoken");
 const multer = require("multer");
+const mongoose = require("mongoose");
 
 const upload = multer().single("client_image");
 
@@ -54,9 +55,14 @@ router.post("/create", tokenParse, check_role, (req, res) => {
           message: "problem with server, please try again",
         });
         return;
-      } else if (err) {
-        throw err;
       }
+      // else if (err) {
+      //   res.send(400, {
+      //     status: false,
+      //     message: "required fields are missing",
+      //   });
+      //   return;
+      // }
       if (req.file) {
         req.body.image = {
           data: req.file.buffer,
@@ -106,10 +112,22 @@ router.patch("/update/:id", tokenParse, check_role, (req, res) => {
       }
 
       console.log(req.body);
-      await Client.updateOne({ _id: req.params.id }, { $set: req.body });
+      await Client.updateOne(
+        { _id: req.params.id },
+        { $set: req.body },
+        { runValidators: true }
+      );
       res.send({ status: true, message: "Client updated!" });
     } catch (err) {
-      res.sendStatus(500);
+      if (err instanceof mongoose.Error) {
+        const errors = [];
+        for (key in err.errors) {
+          errors.push(err.errors[key].properties.message);
+        }
+        res.status(400).send({ status: false, message: errors.join(", ") });
+      } else {
+        res.sendStatus(500);
+      }
       console.log("Update client error => ", err);
     }
   });
