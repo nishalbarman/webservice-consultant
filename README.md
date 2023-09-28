@@ -4,8 +4,8 @@
 
 ### Projects
 
-- API for creating and updating the project
-  - http://localhost:PORT/projects/create
+- #### API for creating and updating the project
+  - (http://localhost:{PORT}/projects/create, http://localhost:PORT/projects/update/:id)
     - Data structure to use -->
     - Data should in the form of multipart/formdata,
     - All fields are required
