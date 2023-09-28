@@ -41,7 +41,8 @@
 - All fields are required
 - Keys that needs to use - name, email, password, role(for normal user it should not given), createdBy(by whom this data going to be created, optional)
 
-```{
+```
+  {
     "name": "Nishal",
     "email": "n@gmail.com",
     "password": "your_secret_password",
