@@ -11,17 +11,35 @@
   width: 100%;
 }
 
+.contact_button {
+  font-size: "17px";
+  text-transform: "uppercase";
+  display: "flex";
+  align-items: "center";
+}
+
 .navouter {
   position: fixed;
   width: 100%;
   z-index: 2;
-  top: 0;
+  /* animation: navbar_animation 0.3s ease-in-out 1s 1 alternate both; */
 }
+
+/* @keyframes navbar_animation {
+  0% {
+    top: -100 !important;
+  }
+  100% {
+    top: 0 !important;
+  }
+} */
 
 .navbar {
   z-index: 1;
   display: flex;
-  height: 70px;
+  min-height: 75px;
+  padding: 13px 0px;
+  height: fit-content;
   background-color: transparent;
   align-items: center;
   justify-content: space-around;
@@ -39,8 +57,9 @@
 }
 
 .desk_links {
+  font-weight: 700;
   display: flex;
-  gap: 25px;
+  gap: 30px;
 }
 
 .desk_links a {
@@ -132,6 +151,9 @@
 
 .logo {
   color: white;
+  font-weight: 600;
+  font-size: 30px;
+  text-shadow: 0px 0px 10px black;
 }
 
 .logoouter {

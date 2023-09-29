@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import axios from "axios";
 import { ImSpinner10 } from "react-icons/im";
 
-import { useToast } from "@chakra-ui/react";
+import { Box, useToast } from "@chakra-ui/react";
 
 import "./Contact.css";
 
@@ -14,12 +14,14 @@ function Contact() {
   const { server_api } = useSelector((state) => state.web_details);
 
   const [sending, setSending] = useState(false);
-  const [formData, setFormData] = useState({
+
+  const initialFormData = {
     name: "",
     message: "",
     email: "",
     phone: "",
-  });
+  };
+  const [formData, setFormData] = useState(initialFormData);
 
   const toast = useToast();
 
@@ -59,6 +61,7 @@ function Contact() {
       const res = await axios.post(`${server_api}/messages/create`, formData);
       console.log(res);
       if (res.status === 200) {
+        setFormData(initialFormData);
         toast({
           title: "Message submitted!",
           description:
@@ -100,9 +103,24 @@ function Contact() {
 
   return (
     <>
-      <div className="headCont">
+      <Box my={"5.1rem"}></Box>
+      <Box
+        display="flex"
+        alignItems="center"
+        justifyContent="center"
+        width="100%"
+        py={130}
+        bgImage="url('https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80')"
+        bgPosition="center"
+        bgRepeat="no-repeat"
+        bgSize={"cover"}
+        mb={2}>
         <h1 className="head">Contact Us</h1>
-      </div>
+      </Box>
+      {/* <div className="headCont">
+        <h1 className="head">Contact Us</h1>
+        
+      </div> */}
 
       <div className="container">
         <div className="form">
@@ -128,9 +146,9 @@ function Contact() {
                   onChange={handleInputChange}
                   type="text"
                   className="inputBox"
-                  id="uName"
                   name="name"
                   placeholder="Name*"
+                  value={formData.name}
                 />
               </div>
               <div className="inputDiv">
@@ -138,9 +156,9 @@ function Contact() {
                   onChange={handleInputChange}
                   type="email"
                   className="inputBox"
-                  id="uEmail"
                   name="email"
                   placeholder="Email*"
+                  value={formData.email}
                 />
               </div>
             </div>
@@ -149,10 +167,10 @@ function Contact() {
                 onChange={handleInputChange}
                 type="tel"
                 className="inputBox"
-                id="uPhone"
                 name="phone"
                 maxLength={10}
                 placeholder="Phone Number"
+                value={formData.phone}
               />
             </div>
             <div className="inputDiv">
@@ -162,6 +180,7 @@ function Contact() {
                 id=""
                 className="inputBox"
                 placeholder="Message*"
+                value={formData.message}
               />
             </div>
 
