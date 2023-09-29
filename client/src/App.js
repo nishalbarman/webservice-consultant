@@ -1,4 +1,3 @@
-import { useEffect, useState } from "react";
 import "./App.css";
 import Navbar from "./Component/navbar/Navbar";
 import AllRoutes from "./Routes/AllRoutes";

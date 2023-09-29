@@ -1,20 +1,13 @@
-import React, { useDebugValue, useState } from "react";
+import React, { useState } from "react";
 import styles from "./Navbar.module.css";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import logo from "../../Images/logo_navbar.png";
-import { useDispatch, useSelector } from "react-redux";
-// import { userLogOut } from "../../Redux/auth/action.js";
 
 function Navbar({ isWhiteBackground, isOfferVisible }) {
   const [colorChange, setColorchange] = useState(false);
   const [sideBarHidden, setSideBarHidden] = useState(null);
-  const [isAuth, setIsAuth] = useState(false);
-
-  //   const { isAuth } = useSelector((state) => state.auth);
 
   const navigate = useNavigate();
   const location = useLocation();
-  //   const dispatch = useDispatch();
 
   const changeNavbarColor = () => {
     if (window.scrollY >= 30) {
@@ -41,16 +34,6 @@ function Navbar({ isWhiteBackground, isOfferVisible }) {
 
   const handleLinkClick = () => {
     handleShowSideMenu();
-  };
-
-  const handleLogOut = (e) => {
-    try {
-      e.preventDefault();
-      // dispatch(userLogOut());
-      alert("Logged out ...");
-    } catch (er) {
-      console.error(er);
-    }
   };
 
   return (
