@@ -5,6 +5,7 @@
   padding: 0;
   box-sizing: border-box;
   user-select: none;
+  border: 1px solid black;
 }
 
 ::-webkit-scrollbar {

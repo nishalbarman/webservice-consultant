@@ -16,7 +16,7 @@ function HomePage() {
   const navigate = useNavigate();
   return (
     <>
-      <Box my={"120px"}></Box>
+      <Box my={"140px"}></Box>
       <div className={styles.outer_wrapper}>
         <div className={styles.section_wrapper}>
           <div className={styles.details_wrapper}>
@@ -28,7 +28,14 @@ function HomePage() {
               hassle-free design service.
             </p>
             <Button
-              alignSelf={"flex-start"}
+              alignSelf={{
+                base: "center", // 0px
+                sm: "center", // ~480px. em is a relative unit and is dependant on the font size.
+                md: "center", // ~768px
+                lg: "center", // ~992px
+                xl: "center", // ~1280px
+                "2xl": "flex-start",
+              }}
               onClick={() => {
                 navigate("/contact");
               }}
@@ -45,7 +52,9 @@ function HomePage() {
               Contact Now
             </Button>
           </div>
-          <img className={styles.right_image} src={web_dev} alt="" />
+          <div className={styles.image_wrapper}>
+            <img className={styles.right_image} src={web_dev} alt="" />
+          </div>
         </div>
         <Box my={"170px"}></Box>
         <div className={styles.services_wrapper}>
