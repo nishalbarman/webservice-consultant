@@ -1,7 +1,10 @@
 import React from "react";
+import { ImSpinner10 } from "react-icons/im";
 import "./Contact.css";
 
 function Contact() {
+  const sending = false;
+
   return (
     <>
       <div className="headCont">
@@ -67,7 +70,12 @@ function Contact() {
 
             <div className="" id="">
               <button className="btn" id="">
-                REACH US <i className="bi bi-arrow-right" />
+                REACH US
+                {sending ? (
+                  <ImSpinner10 />
+                ) : (
+                  <i className="bi bi-arrow-right" />
+                )}
               </button>
             </div>
           </div>

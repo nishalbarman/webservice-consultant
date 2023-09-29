@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import "./App.css";
-import Contact from "./Pages/contactus/Contact";
+import Navbar from "./Component/navbar/Navbar";
+import AllRoutes from "./Routes/AllRoutes";
+import { useLocation } from "react-router-dom";
 
 function App() {
   // const [services, setServices] = useState([]);
@@ -22,15 +24,24 @@ function App() {
   // useEffect(() => {
   //   makeRequest();
   // }, []);
+
+  const location = useLocation();
+  const isWhite = location.pathname !== "/" ? true : false;
+
   return (
-    <div className="App">
-      <Contact />
-      {/* <img
+    <>
+      <div className="App">
+        {location.pathname !== "/login" && location.pathname !== "/signup" && (
+          <Navbar isWhiteBackground={isWhite} isOfferVisible={!true} /> //isWhite
+        )}
+        <AllRoutes />
+        {/* <img
         src={`data:${services[0]?.image?.mimetype};base64,${arrayBufferToBase64(
           services[0]?.image?.data.data
         )}`}
       /> */}
-    </div>
+      </div>
+    </>
   );
 }
 
