@@ -1,5 +1,6 @@
 :root {
   --inp_border_primary: #3498db;
+  --inp_border_primary_disabled: rgb(30, 119, 179);
   --inp_border_onFocus: #1589e7;
   --inp_text_onFocus: rgb(20, 126, 192);
 }
@@ -137,6 +138,10 @@
   margin-bottom: 2px;
 }
 
+.formBody .btn:disabled {
+  background: var(--inp_border_primary_disabled);
+}
+
 .formBody .btn > svg {
   animation-name: spin;
   animation-iteration-count: infinite;
@@ -153,12 +158,19 @@
   }
 }
 
-.formBody .btn:hover {
+.formBody .btn:hover:not(:invalid) {
   font-size: 0.95rem;
   padding: 1rem 5rem;
 
   color: var(--inp_border_primary);
   background: transparent;
+}
+
+.formBody .btn:disabled:hover {
+  padding: 1rem 5rem;
+  font-size: 0.9rem;
+  background: var(--inp_border_primary_disabled);
+  color: white;
 }
 
 @media (max-width: 1000px) {

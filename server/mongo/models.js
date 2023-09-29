@@ -146,7 +146,7 @@ Project.schema.path("title").validate({
 
 Message.schema.path("name").validate({
   validator: function (value) {
-    return value.length > 3;
+    return value.length > 2;
   },
   message: "name required",
 });
@@ -164,7 +164,7 @@ Message.schema.path("message").validate({
   validator: function (value) {
     return value.length > 10;
   },
-  message: "message required",
+  message: "Message minimum length should be 10 characters",
 });
 
 Message.schema.path("phone").validate({

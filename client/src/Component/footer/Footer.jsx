@@ -2,12 +2,9 @@ import React from "react";
 import "./Footer.css";
 
 function Footer() {
-  const footerFunction = () => {
-    const footerScroll = document.querySelector("#fifth_footer");
-    footerScroll.addEventListener("click", () => {
-      document.body.scrollTop = 0; // For Safari
-      document.documentElement.scrollTop = 0;
-    });
+  const handleTopScroll = () => {
+    document.body.scrollTop = 0; // For Safari
+    document.documentElement.scrollTop = 0;
   };
 
   return (
@@ -64,6 +61,7 @@ function Footer() {
           </div>
 
           <i
+            onClick={handleTopScroll}
             id="fifth_footer"
             className="fa-solid fa-angle-up"
             style={{ color: "white" }}
