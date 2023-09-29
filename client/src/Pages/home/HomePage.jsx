@@ -69,7 +69,7 @@ function HomePage() {
             />
           </div>
         </div>
-        <Box my={"170px"}></Box>
+        <Box my={"140px"}></Box>
         <div className={styles.services_wrapper}>
           <p className={styles.service_heading}>
             Get your project done in 1-2 weeks, not months
@@ -123,7 +123,7 @@ function HomePage() {
             Contact Today
           </Button>
         </div>
-        <Box my={"10px"}></Box>
+        <Box my={"80px"}></Box>
 
         <div className={styles.section_wrapper}>
           <img
@@ -141,6 +141,9 @@ function HomePage() {
             </p>
           </div>
         </div>
+
+        <Box my={"50px"}></Box>
+
         <div className={styles.section_wrapper}>
           <div className={styles.details_wrapper}>
             <p>Meet your virtual developer team</p>
@@ -158,8 +161,7 @@ function HomePage() {
           />
         </div>
 
-        <Box my={"170px"}></Box>
-        <Box my={"170px"}></Box>
+        <Box my={"100px"}></Box>
 
         <div className={styles.services_wrapper}>
           <p className={styles.service_heading}>

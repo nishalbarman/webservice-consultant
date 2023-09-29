@@ -31,18 +31,16 @@ function App() {
 
   return (
     <>
-      <div className="App">
-        {location.pathname !== "/login" && location.pathname !== "/signup" && (
-          <Navbar isWhiteBackground={isWhite} isOfferVisible={!true} /> //isWhite
-        )}
-        <AllRoutes />
-        <Footer />
-        {/* <img
+      {location.pathname !== "/login" && location.pathname !== "/signup" && (
+        <Navbar isWhiteBackground={isWhite} isOfferVisible={!true} /> //isWhite
+      )}
+      <AllRoutes />
+      <Footer />
+      {/* <img
         src={`data:${services[0]?.image?.mimetype};base64,${arrayBufferToBase64(
           services[0]?.image?.data.data
         )}`}
       /> */}
-      </div>
     </>
   );
 }
