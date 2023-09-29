@@ -53,7 +53,20 @@ function HomePage() {
             </Button>
           </div>
           <div className={styles.image_wrapper}>
-            <img className={styles.right_image} src={web_dev} alt="" />
+            {/* <img
+              className={styles.right_image}
+              src={
+                "https://img.freepik.com/free-vector/people-creating-social-media-landing-page_52683-38062.jpg?w=1380&t=st=1695986088~exp=1695986688~hmac=a802ccfcd2b2556aafb1ac4d776ba4914f27c0b92fc433d10608a999bc4c80dc"
+              }
+              alt=""
+            /> */}
+            <img
+              className={styles.right_image}
+              src={
+                "https://img.freepik.com/free-vector/web-development-concept-with-programmer-ar_107791-17049.jpg?w=1380&t=st=1695986238~exp=1695986838~hmac=d6ffcb0f1ebf8840cfa8fcb11268a17f6eaf6c8e781a11c9b5bb7873d29a04d6"
+              }
+              alt=""
+            />
           </div>
         </div>
         <Box my={"170px"}></Box>
@@ -110,24 +123,104 @@ function HomePage() {
             Contact Today
           </Button>
         </div>
-        <Box my={"170px"}></Box>
+        <Box my={"10px"}></Box>
 
         <div className={styles.section_wrapper}>
           <img
             className={styles.right_image}
             src={
-              "https://global-uploads.webflow.com/63a9cb71c629474d4ae334b9/6474e102f522e723a6380cd1_frame_6878-p-500.webp"
+              "https://img.freepik.com/premium-vector/color-modern-illustration-web_145666-925.jpg?w=826"
             }
             alt=""
           />
           <div className={styles.details_wrapper}>
-            <p>Hiring a designer should be simple</p>
+            <p>Getting a developer should be simple</p>
             <p>
               Finding quality and reliable freelancers takes a lot of time and
               luck. In-house hires are expensive and can create HR drama.
             </p>
           </div>
         </div>
+        <div className={styles.section_wrapper}>
+          <div className={styles.details_wrapper}>
+            <p>Meet your virtual developer team</p>
+            <p>
+              We provide you with vetted developers for a flat monthly fee. No
+              hiring, no contracts, no stress.
+            </p>
+          </div>
+          <img
+            className={styles.right_image}
+            src={
+              "https://img.freepik.com/free-vector/engineer-developer-with-laptop-tablet-code-cross-platform-development-cross-platform-operating-systems-software-environments-concept-bright-vibrant-violet-isolated-illustration_335657-312.jpg?w=1380&t=st=1695985893~exp=1695986493~hmac=22ed511e52f5001bbe7e88bf6a579845dd54a430a2a0d1a01b4ff21f65a8bc5c"
+            }
+            alt=""
+          />
+        </div>
+
+        <Box my={"170px"}></Box>
+        <Box my={"170px"}></Box>
+
+        <div className={styles.services_wrapper}>
+          <p className={styles.service_heading}>
+            Services we offer at very less cost
+          </p>
+          <div className={styles.grid_section}>
+            <div className={styles.service_card}>
+              <img
+                src="https://aavinyatechnology.in/wp-content/uploads/2023/07/app-development.png"
+                alt=""
+                style={{ marginBottom: "30px" }}
+              />
+              <p>App Development</p>
+              <p>
+                Let us know what you need. Share references and upload your
+                brand assets.
+              </p>
+            </div>
+            <div className={styles.service_card}>
+              <img
+                src="https://aavinyatechnology.in/wp-content/uploads/2023/07/web.png"
+                alt=""
+                style={{ marginBottom: "30px" }}
+              />
+              <p>Webapp Development</p>
+              <p>
+                Hire the best Web developer for your business and reach your
+                highest goal online.
+              </p>
+            </div>
+            <div className={styles.service_card}>
+              <img
+                src="https://aavinyatechnology.in/wp-content/uploads/2023/07/cloud-server.png"
+                alt=""
+                style={{ marginBottom: "30px" }}
+              />
+              <p>Software Development</p>
+              <p>
+                We develop custom software for your business with our
+                cutting-edge technologies and skills.
+              </p>
+            </div>
+          </div>
+          <Button
+            alignSelf={"center"}
+            onClick={() => {
+              navigate("/contact");
+            }}
+            colorScheme="twitter"
+            py={"1.7rem"}
+            w={"170px"}
+            my={"1rem"}
+            boxShadow={"0px 0px 10px white"}
+            style={{
+              fontSize: "16px",
+              textTransform: "uppercase",
+            }}>
+            Contact Today
+          </Button>
+        </div>
+        <Box my={"10px"}></Box>
       </div>
     </>
   );
