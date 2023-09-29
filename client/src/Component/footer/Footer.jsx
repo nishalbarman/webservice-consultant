@@ -14,10 +14,11 @@ function Footer() {
           <div className="first_footer">
             <p className="footer_heading">About us</p>
             <p>
-              Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-              Doloribus sequi quis voluptatibus, reprehenderit quibusdam
-              pariatur eum quo rem alias ea, ut ab ad, atque quidem quae animi
-              eaque? Cumque, magni.
+              We are a software company dedicated to providing innovative and
+              transformative technology solutions that empower organizations and
+              individuals to achieve their full potential. Our team of experts
+              is committed to providing exceptional service and support to
+              ensure the success of our clients’ projects.
             </p>
           </div>
 
