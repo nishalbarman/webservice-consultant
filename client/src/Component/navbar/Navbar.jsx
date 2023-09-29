@@ -60,11 +60,7 @@ function Navbar({ isWhiteBackground, isOfferVisible }) {
           sideBarHidden || sideBarHidden === null ? "hidden" : ""
         }`}
         onClick={handleBlankScreen}></div>
-      {isOfferVisible && !colorChange && (
-        <div className={styles.discount}>
-          <p>Upto 50% of on your trips</p>
-        </div>
-      )}
+
       <div
         className={styles.navouter}
         style={
@@ -72,7 +68,7 @@ function Navbar({ isWhiteBackground, isOfferVisible }) {
             ? {
                 backgroundColor: "white",
                 top: "0",
-                boxShadow: " rgba(17, 17, 26, 0.1) 0px 1px 0px",
+                boxShadow: "rgba(17, 17, 26, 0.1) 0px 1px 0px",
               }
             : {}
         }>
@@ -103,7 +99,7 @@ function Navbar({ isWhiteBackground, isOfferVisible }) {
               Home
             </Link>
             <Link
-              to={"/"}
+              to={"/aboutus"}
               className={`${
                 location.pathname.includes("/aboutus")
                   ? styles.link_active_desk
@@ -119,7 +115,7 @@ function Navbar({ isWhiteBackground, isOfferVisible }) {
               Services
             </Link>
             <Link
-              to={"/"}
+              to={"/projects"}
               className={`${
                 location.pathname === "/projects" ? styles.link_active_desk : ""
               } font-semibold`}>
@@ -148,8 +144,8 @@ function Navbar({ isWhiteBackground, isOfferVisible }) {
             : `${styles.sidebar_backward}`
         } z-50`}>
         <div className={styles.logoouter}>
-          <img src={logo} />
-          <h2 className={`${styles.logo}`}>Voyawander</h2>
+          {/* <img src={logo} /> */}
+          <h2 className={`${styles.logo}`}>AntarAtma</h2>
         </div>
         <div className={styles.hor_line}></div>
         <Link
@@ -163,7 +159,7 @@ function Navbar({ isWhiteBackground, isOfferVisible }) {
         <div className={styles.hor_line}></div>
         <Link
           onClick={handleLinkClick}
-          to={"/"}
+          to={"/aboutus"}
           className={`${
             location.pathname === "/aboutus" ? styles.mobile_active_link : ""
           } font-semibold`}>
@@ -183,7 +179,7 @@ function Navbar({ isWhiteBackground, isOfferVisible }) {
         <div className={styles.hor_line}></div>
         <Link
           onClick={handleLinkClick}
-          to={"/"}
+          to={"/projects"}
           className={`${
             location.pathname.includes("/projects")
               ? styles.mobile_active_link
