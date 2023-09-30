@@ -8,7 +8,7 @@ import {
   StackDivider,
 } from "@chakra-ui/react";
 import React from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import web_dev from "../../Images/develop_web.jpg";
 import styles from "./HomePage.module.css";
 
@@ -27,7 +27,10 @@ function HomePage() {
               Scale up your creative content production with a reliable and
               hassle-free design service.
             </p>
-            <Button
+            <div className={styles.wave_wrapper}>
+              <Link to={"/contact"}>Contact</Link>
+            </div>
+            {/* <Button
               alignSelf={{
                 base: "center", // 0px
                 sm: "center", // ~480px. em is a relative unit and is dependant on the font size.
@@ -50,7 +53,7 @@ function HomePage() {
                 alignItems: "center",
               }}>
               Contact Now
-            </Button>
+            </Button> */}
           </div>
           <div className={styles.image_wrapper}>
             {/* <img
@@ -123,7 +126,7 @@ function HomePage() {
             Contact Today
           </Button>
         </div>
-        <Box my={"80px"}></Box>
+        <Box my={{ base: "40px", lg: "40px", xl: "0px" }}></Box>
 
         <div className={styles.section_wrapper}>
           <img
@@ -142,7 +145,7 @@ function HomePage() {
           </div>
         </div>
 
-        <Box my={"50px"}></Box>
+        <Box my={"10px"}></Box>
 
         <div className={styles.section_wrapper}>
           <div className={styles.details_wrapper}>

@@ -86,6 +86,58 @@
   line-height: 2.3rem;
 }
 
+.wave_wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 180px;
+  border-radius: 10px;
+  height: 58px;
+  color: white;
+  font-weight: 500;
+  text-shadow: 0px 0px 5px black;
+  border: 1px solid rgb(8, 134, 203);
+  position: relative;
+  font-size: 20px;
+  overflow: hidden;
+  cursor: pointer;
+  margin-top: 15px;
+  transition: all 0.5s;
+}
+
+.wave_wrapper:hover {
+  box-shadow: 1px 1px 15px rgb(2, 52, 79);
+}
+
+.wave_wrapper:hover::before {
+  top: 20%;
+}
+
+.wave_wrapper::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  width: 450px;
+  height: 450px;
+  left: 60%;
+  transform: translate(-50%);
+  border-radius: 44%;
+  background-color: rgb(8, 134, 203);
+  border: 1px solid rgb(8, 134, 203);
+  animation: wave 18s infinite linear;
+  transition: all 1s;
+  z-index: -1;
+}
+
+@keyframes wave {
+  0% {
+    transform: translate(-55%) rotate(-180deg);
+  }
+  100% {
+    transform: translate(-50%) rotate(360deg);
+  }
+}
+
 @media only screen and (max-width: 1590px) {
   div.details_wrapper .first_sec_heading {
     font-size: 2.8rem;
