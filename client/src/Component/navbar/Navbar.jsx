@@ -13,15 +13,6 @@ function Navbar({ isWhiteBackground, isOfferVisible }) {
   const navigate = useNavigate();
   const location = useLocation();
 
-  // const changeNavbarColor = () => {
-  //   if (window.scrollY >= 70) {
-  //     setColorchange(true);
-  //   } else {
-  //     setColorchange(false);
-  //   }
-  // };
-
-  // if (!isWhiteBackground) {
   window.addEventListener("scroll", () => {
     let st = window.scrollY || document.documentElement.scrollTop;
     if (st > lastScrollTop) {
@@ -33,7 +24,6 @@ function Navbar({ isWhiteBackground, isOfferVisible }) {
     } // else was horizontal scroll
     setLastScrollTop(st <= 0 ? 0 : st); // For Mobile or negative scrolling
   });
-  // }
 
   const handleShowSideMenu = () => {
     setSideBarHidden((prev) => {
@@ -56,15 +46,19 @@ function Navbar({ isWhiteBackground, isOfferVisible }) {
 
   return (
     <>
+      {/* sidebar black screen */}
       <div
         className={`${styles.blank_screen} ${
           sideBarHidden || sideBarHidden === null ? "hidden" : ""
         }`}
         onClick={handleBlankScreen}></div>
 
-      {navbarHide || (
+      {/* main navbar starts */}
+      {false || (
         <div
-          className={styles.navouter}
+          className={`${styles.navouter} ${
+            navbarHide ? styles.navbar_animate : ""
+          }`}
           style={
             isWhiteBackground || colorChange
               ? {
@@ -138,21 +132,10 @@ function Navbar({ isWhiteBackground, isOfferVisible }) {
                 Contact Us
               </Link>
             </div>
-            <Button
-              display={{ base: "none", sm: "none", lg: "inline-flex" }}
-              onClick={() => {
-                navigate("/contact");
-              }}
-              colorScheme="twitter"
-              py={"1.7rem"}
-              px={"1.3rem"}
-              style={{
-                fontSize: "17px",
-                textTransform: "uppercase",
-                alignItems: "center",
-              }}>
-              Contact Now
-            </Button>
+
+            <div className={styles.wave_wrapper}>
+              <Link to={"/contact"}>Book A Call</Link>
+            </div>
           </div>
         </div>
       )}
@@ -237,7 +220,7 @@ function Navbar({ isWhiteBackground, isOfferVisible }) {
             textTransform: "uppercase",
             alignItems: "center",
           }}>
-          Contact Now
+          Book A Call
         </Button>
       </div>
     </>

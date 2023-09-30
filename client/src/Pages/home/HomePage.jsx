@@ -27,10 +27,10 @@ function HomePage() {
               Scale up your creative content production with a reliable and
               hassle-free design service.
             </p>
-            <div className={styles.wave_wrapper}>
+            {/* <div className={styles.wave_wrapper}>
               <Link to={"/contact"}>Contact</Link>
-            </div>
-            {/* <Button
+            </div> */}
+            <Button
               alignSelf={{
                 base: "center", // 0px
                 sm: "center", // ~480px. em is a relative unit and is dependant on the font size.
@@ -53,7 +53,7 @@ function HomePage() {
                 alignItems: "center",
               }}>
               Contact Now
-            </Button> */}
+            </Button>
           </div>
           <div className={styles.image_wrapper}>
             {/* <img
