@@ -86,8 +86,6 @@ router.post("/login", async (req, res) => {
       return;
     }
 
-    let flag = false;
-
     if (user.email && user._id && user.name && user.password) {
       const result = bcrypt.compareSync(req.body.password, user.password);
       console.log("Hash compare result => ", result);
