@@ -3,7 +3,7 @@ const { User } = require("../mongo/models");
 const jwt = require("jsonwebtoken");
 const mongoose = require("mongoose");
 const passValidator = require("password-validator");
-const bcrypt = require("bcryptjs");
+const bcrypt = require("bcrypt");
 
 const validatePass = new passValidator();
 validatePass.is().min(8).has().uppercase().has().lowercase();
